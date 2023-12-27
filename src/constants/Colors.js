@@ -4,7 +4,7 @@ export const Colors={
     Black:'#000',
     White:'#fff',
     DarkGrey:'#324156',
-    LightGrey:'#ECECEC',
+    LightGrey:'#F8F9FB',
     skyBlue:'#87CEEB',
     darkYellow:'#F9B023',
     lightYellow:'#FFC83A',
@@ -13,5 +13,5 @@ export const Colors={
     black60:"#606D76",
     black20:"#C5CDD2",
     black10:"#E7ECF0",
-    black1:'#F8F9FB'
+    black1:'#F8F9FB',
 }
