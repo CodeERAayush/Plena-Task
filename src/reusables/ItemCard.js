@@ -5,7 +5,7 @@ import { heightPercentageToDP, widthPercentageToDP } from 'react-native-responsi
 import { Images } from '../../assets/Images'
 import { Fonts } from '../../assets/fonts'
 
-const ItemCard = ({ item }) => {
+const ItemCard = ({ item,onPressCart }) => {
     /*
     {"brand": "Golden",
      "category": "home-decoration",
@@ -42,7 +42,9 @@ const ItemCard = ({ item }) => {
             <View style={styles.data_holder}>
                 <View style={styles.heading_holder}>
                     <Text style={styles.price_text}>Rs. {item?.price}</Text>
-                    <TouchableOpacity>
+                    <TouchableOpacity
+                    onPress={()=>onPressCart(item)}
+                    >
                     <Image
                     source={Images?.add_to_cart}
                     style={styles?.add_cart_btn}
@@ -50,7 +52,7 @@ const ItemCard = ({ item }) => {
                     </TouchableOpacity>
                 </View>
                 <Text style={styles.title}>
-                    {item?.title}
+                    {item?.title?.length>21?item?.title.slice(0,20)+"...":item?.title}
                 </Text>
             </View>
         </View>
@@ -76,7 +78,7 @@ const styles = StyleSheet.create({
         alignSelf:"center",
         alignItems:'center',
         justifyContent:'center',
-        height:'50%',
+        height:'55%',
         marginTop:heightPercentageToDP(0.6),
         borderRadius:widthPercentageToDP(5),
         overflow:'hidden'

@@ -6,17 +6,23 @@ import { Fonts } from '../../../assets/fonts';
 import SimpleLineIcons from 'react-native-vector-icons/SimpleLineIcons'
 import Feather from 'react-native-vector-icons/Feather'
 import { Images } from '../../../assets/Images';
+import { useSelector } from 'react-redux';
 
 const HeroSection = ({navigation}) => {
+
+    const CartItems=useSelector((state)=>state?.cart?.items)
+
   return (
     <View style={styles.top_section}>
         <View style={styles.top_section_top}>
           <View style={styles.utilites}>
             <Text style={styles.greet_text}>Hey, Aayush</Text>
             <TouchableOpacity style={styles.notification}>
-              <Text style={styles.notification_text}>3</Text>
+              <Text style={styles.notification_text}>
+                {CartItems?.length}
+              </Text>
             </TouchableOpacity>
-            <TouchableOpacity>
+            <TouchableOpacity onPress={()=>navigation.navigate("Cart")}>
               <SimpleLineIcons
                 name="handbag"
                 size={22}

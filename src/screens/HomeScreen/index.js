@@ -12,7 +12,15 @@ import { API } from '../../constants/api';
 import axios from 'react-native-axios'
 import { heightPercentageToDP, widthPercentageToDP } from 'react-native-responsive-screen';
 import ItemCard from '../../reusables/ItemCard';
+import { useDispatch, useSelector } from 'react-redux';
+import { add_product } from '../../slices/ProductSlice';
+import { add_item } from '../../slices/CartSlice';
 const HomeScreen = ({ navigation }) => {
+
+  const dispatch=useDispatch()
+
+  const Products=useSelector((state)=>state?.products?.products)
+  const CartItems=useSelector((state)=>state?.cart?.items)
 
   const [products, setProducts] = useState([])
   const [loading, setLoading] = useState(false)
@@ -29,7 +37,9 @@ const HomeScreen = ({ navigation }) => {
       method: 'GET'
     }
     axios(params)
-      .then(r => setProducts(r?.data?.products))
+      .then(r => {
+        dispatch(add_product(r?.data?.products))
+        setProducts(r?.data?.products)})
       .catch(e => console.log("error in fetching products: ", e))
       .finally(() => setLoading(false))
   }, [])
@@ -40,14 +50,16 @@ const HomeScreen = ({ navigation }) => {
         backgroundColor={Colors.Primary}
       />
         <FlatList
-          data={products}
+          data={Products}
           showsVerticalScrollIndicator={false}
           numColumns={2}
           renderItem={({ item, index }) => <ItemCard
               item={item}
               key={index}
+              onPressCart={(item)=>dispatch(add_item(item))}
             />
           }
+
           ListHeaderComponent={() => <>
             <HeroSection
               navigation={navigation}
