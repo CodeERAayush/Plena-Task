@@ -1,11 +1,11 @@
-import { StyleSheet, Text, View, Image, TouchableOpacity } from 'react-native'
+import { StyleSheet, Text, View, Image, TouchableOpacity, Pressable } from 'react-native'
 import React from 'react'
 import { Colors } from '../constants/Colors'
 import { heightPercentageToDP, widthPercentageToDP } from 'react-native-responsive-screen'
 import { Images } from '../../assets/Images'
 import { Fonts } from '../../assets/fonts'
 
-const ItemCard = ({ item,onPressCart }) => {
+const ItemCard = ({ item,onPressCart,naviagtion }) => {
     /*
     {"brand": "Golden",
      "category": "home-decoration",
@@ -23,7 +23,9 @@ const ItemCard = ({ item,onPressCart }) => {
               "title": "Key Holder"}  
      */
     return (
-        <View style={styles?.card}>
+        <Pressable 
+        onPress={()=>naviagtion.navigate("Product",{id:item?.id})}
+        style={styles?.card}>
             <View style={styles.img_holder}>
               { item?.images?.length
               ?
@@ -55,7 +57,7 @@ const ItemCard = ({ item,onPressCart }) => {
                     {item?.title?.length>21?item?.title.slice(0,20)+"...":item?.title}
                 </Text>
             </View>
-        </View>
+        </Pressable>
     )
 }
 

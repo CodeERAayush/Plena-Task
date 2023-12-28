@@ -57,6 +57,7 @@ const HomeScreen = ({ navigation }) => {
               item={item}
               key={index}
               onPressCart={(item)=>dispatch(add_item(item))}
+              naviagtion={navigation}
             />
           }
 
