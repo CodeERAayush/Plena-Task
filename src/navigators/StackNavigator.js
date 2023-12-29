@@ -22,7 +22,6 @@ const StackNavigator = () => {
         headerShown: false
     }}>
         {_addScreen("BottomTab",BottomTabNavigator)}
-        {/* {_addScreen("Home",HomeScreen)} */}
         {_addScreen("Product",ProductDetailScreen)}
         {_addScreen("Cart",CartScreen)}
         </Stack.Navigator>

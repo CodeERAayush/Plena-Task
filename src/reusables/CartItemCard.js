@@ -11,22 +11,7 @@ import { decrease_quantity, increase_quantity, remove_item } from '../slices/Car
 const CartItemCard = ({item,navigation}) => {
 
   const dispatch=useDispatch()
-    /*
-    {"brand": "Golden",
-     "category": "home-decoration",
-      "description": "Attractive DesignMetallic materialFour key hooksReliable & DurablePremium Quality", 
-      "discountPercentage": 2.92,
-       "id": 30,
-        "images": ["https://i.dummyjson.com/data/products/30/1.jpg",
-         "https://i.dummyjson.com/data/products/30/2.jpg",
-          "https://i.dummyjson.com/data/products/30/3.jpg",
-           "https://i.dummyjson.com/data/products/30/thumbnail.jpg"],
-           "price": 30,
-            "rating": 4.92,
-             "stock": 54, 
-             "thumbnail": "https://i.dummyjson.com/data/products/30/thumbnail.jpg",
-              "title": "Key Holder"}  
-     */
+  
   return (
     <>
     <TouchableOpacity
