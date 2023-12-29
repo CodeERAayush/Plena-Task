@@ -1,5 +1,5 @@
 import { StyleSheet, Text, View,Image, TouchableOpacity } from 'react-native'
-import React from 'react'
+import React, { memo } from 'react'
 import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen'
 import { Images } from '../../assets/Images'
 import { Colors } from '../constants/Colors'
@@ -68,7 +68,7 @@ const CartItemCard = ({item,navigation}) => {
   )
 }
 
-export default CartItemCard
+export default memo(CartItemCard)
 
 const styles = StyleSheet.create({
   card:{

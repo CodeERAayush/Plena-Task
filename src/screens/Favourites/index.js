@@ -1,5 +1,5 @@
 import { FlatList, StatusBar, StyleSheet, Text, View } from 'react-native'
-import React from 'react'
+import React, { useCallback } from 'react'
 import { Colors } from '../../constants/Colors'
 import Header from '../../reusables/Header'
 import { useSelector, useDispatch } from 'react-redux'
@@ -14,6 +14,15 @@ const Favourites = ({navigation}) => {
 
     const favourites=useSelector(state=>state?.favourites?.items)
 
+    const renderItem = useCallback(({item, index}) => (
+        <ItemCard
+              item={item}
+              favou={true}
+              key={index}
+              onPressCart={(item)=>dispatch(add_item(item))}
+              naviagtion={navigation}
+            />
+      ), []);
   return (
     <View style={styles?.main_screen}>
     <Header
@@ -23,14 +32,7 @@ const Favourites = ({navigation}) => {
           data={favourites}
           showsVerticalScrollIndicator={false}
           numColumns={2}
-          renderItem={({ item, index }) => <ItemCard
-              item={item}
-              favou={true}
-              key={index}
-              onPressCart={(item)=>dispatch(add_item(item))}
-              naviagtion={navigation}
-            />
-          }
+          renderItem={renderItem}
           ListHeaderComponent={()=><Text style={styles.heading}>My Favourites</Text>}
           ListEmptyComponent={() => <Empty />}
           ListFooterComponent={()=><View style={{marginBottom:heightPercentageToDP(10)}}></View>}

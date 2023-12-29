@@ -1,5 +1,5 @@
 import { FlatList, StatusBar, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
-import React, { useEffect, useState } from 'react'
+import React, { useCallback, useEffect, useState } from 'react'
 import { useSelector } from 'react-redux'
 import { Colors } from '../../constants/Colors'
 import CartItemCard from '../../reusables/CartItemCard'
@@ -22,6 +22,14 @@ const CartScreen = ({navigation}) => {
     setPrice(price)
   },[CartItems])
 
+
+  const renderItem = useCallback(({item,index}) => (
+    <CartItemCard
+    item={item}
+    navigation={navigation}
+    />
+  ), []);
+
   return (
     <View style={styles?.main_screen}>
         <StatusBar backgroundColor={Colors?.White}/>
@@ -35,10 +43,7 @@ const CartScreen = ({navigation}) => {
     <FlatList
     data={CartItems}
     keyExtractor={(item,index)=>index.toString()}
-    renderItem={({ item }) => <CartItemCard
-    item={item}
-    navigation={navigation}
-    />}
+    renderItem={renderItem}
     ListEmptyComponent={()=><Empty/>}
     />
     <View style={styles.bottom_area}>

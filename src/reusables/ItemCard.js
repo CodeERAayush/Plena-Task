@@ -1,5 +1,5 @@
 import { StyleSheet, Text, View, Image, TouchableOpacity, Pressable } from 'react-native'
-import React from 'react'
+import React, { memo } from 'react'
 import { Colors } from '../constants/Colors'
 import { heightPercentageToDP, widthPercentageToDP } from 'react-native-responsive-screen'
 import { Images } from '../../assets/Images'
@@ -58,7 +58,7 @@ const ItemCard = ({ item,onPressCart,naviagtion,favou }) => {
     )
 }
 
-export default ItemCard
+export default memo(ItemCard)
 
 const styles = StyleSheet.create({
     card: {

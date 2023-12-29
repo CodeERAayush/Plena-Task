@@ -44,6 +44,17 @@ const HomeScreen = ({ navigation }) => {
       .finally(() => setLoading(false))
   }, [])
 
+  const renderItem = useCallback(({item,index}) => (
+    <ItemCard
+              item={item}
+              key={index}
+              onPressCart={(item)=>{
+                dispatch(add_item(item))
+                ToastAndroid.show("Item added to cart!",ToastAndroid.CENTER)
+              }}
+              naviagtion={navigation}
+            />
+  ), []);
   return (
     <View style={styles.main_screen}>
       <StatusBar
@@ -53,17 +64,8 @@ const HomeScreen = ({ navigation }) => {
           data={Products}
           showsVerticalScrollIndicator={false}
           numColumns={2}
-          renderItem={({ item, index }) => <ItemCard
-              item={item}
-              key={index}
-              onPressCart={(item)=>{
-                dispatch(add_item(item))
-                ToastAndroid.show("Item added to cart!",ToastAndroid.CENTER)
-              }}
-              naviagtion={navigation}
-            />
-          }
-
+          maxToRenderPerBatch={10}
+          renderItem={renderItem}
           ListHeaderComponent={() => <>
             <HeroSection
               navigation={navigation}
