@@ -9,10 +9,14 @@ export const productSlice = createSlice({
   initialState,
   reducers: {
     add_product: (state,action) => {
-    state?.products.push(...action?.payload)
+      let tempProducts={...state};
+      tempProducts['products']=action?.payload
+      return tempProducts;
     },
     append_product: (state,action) => {
-    state?.products?.unshift(action?.payload)
+      let tempProducts={...state};
+      tempProducts['products']=[action?.payload].concat( tempProducts['products'])
+      return tempProducts;
     },
   },
 })
