@@ -1,4 +1,4 @@
-import { FlatList, StatusBar, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native'
+import { FlatList, StatusBar, StyleSheet, Text, TextInput, ToastAndroid, TouchableOpacity, View } from 'react-native'
 import React, { useCallback, useEffect, useState } from 'react'
 import { Colors } from '../../constants/Colors'
 import { Fonts } from '../../../assets/fonts';
@@ -56,7 +56,10 @@ const HomeScreen = ({ navigation }) => {
           renderItem={({ item, index }) => <ItemCard
               item={item}
               key={index}
-              onPressCart={(item)=>dispatch(add_item(item))}
+              onPressCart={(item)=>{
+                dispatch(add_item(item))
+                ToastAndroid.show("Item added to cart!",ToastAndroid.CENTER)
+              }}
               naviagtion={navigation}
             />
           }
@@ -69,7 +72,7 @@ const HomeScreen = ({ navigation }) => {
             <Text style={styles.heading}>Recommended</Text>
           </>}
           ListEmptyComponent={() => loading?<Loader/>:<Empty />}
-          ListFooterComponent={()=><></>}
+          ListFooterComponent={()=><View style={{marginBottom:heightPercentageToDP(10)}}></View>}
         />
     </View>
   )

@@ -37,6 +37,7 @@ const CartScreen = ({navigation}) => {
     keyExtractor={(item,index)=>index.toString()}
     renderItem={({ item }) => <CartItemCard
     item={item}
+    navigation={navigation}
     />}
     ListEmptyComponent={()=><Empty/>}
     />

@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View,Image } from 'react-native'
+import { StyleSheet, Text, View,Image, TouchableOpacity } from 'react-native'
 import React from 'react'
 import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen'
 import { Images } from '../../assets/Images'
@@ -8,7 +8,7 @@ import CustomBtn from './button'
 import { useDispatch } from 'react-redux'
 import { decrease_quantity, increase_quantity, remove_item } from '../slices/CartSlice'
 
-const CartItemCard = ({item}) => {
+const CartItemCard = ({item,navigation}) => {
 
   const dispatch=useDispatch()
     /*
@@ -29,7 +29,9 @@ const CartItemCard = ({item}) => {
      */
   return (
     <>
-    <View style={styles.card}>
+    <TouchableOpacity
+    onPress={()=>navigation.navigate("Product",{id:item?.id})}
+    style={styles.card}>
       <View style={styles.left_part}>
        {!item?.images?.length? <Image
           source={Images?.no_image}
@@ -58,7 +60,7 @@ const CartItemCard = ({item}) => {
           onPress={()=>dispatch(increase_quantity(item?.id))}
           />
       </View>
-    </View>
+    </TouchableOpacity>
       <View
       style={{backgroundColor:Colors?.LightGrey,height:1,width:wp(90),alignSelf:'center',marginVertical:hp(2)}}
       />

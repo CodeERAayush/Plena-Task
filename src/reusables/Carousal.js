@@ -13,6 +13,8 @@ const Carousal = ({ images }) => {
             setScrollIndex(viewableItems[viewableItems?.length - 1].index);
         }
     }, []);
+
+    
     return (
         <View style={styles?.carousal_card}>
             <FlatList

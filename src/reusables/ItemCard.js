@@ -4,28 +4,25 @@ import { Colors } from '../constants/Colors'
 import { heightPercentageToDP, widthPercentageToDP } from 'react-native-responsive-screen'
 import { Images } from '../../assets/Images'
 import { Fonts } from '../../assets/fonts'
+import Icon, { Icons } from '../../assets/Icons/Icons'
+import LottieView from 'lottie-react-native'
+import MakeFav from './MakeFav'
 
-const ItemCard = ({ item,onPressCart,naviagtion }) => {
-    /*
-    {"brand": "Golden",
-     "category": "home-decoration",
-      "description": "Attractive DesignMetallic materialFour key hooksReliable & DurablePremium Quality", 
-      "discountPercentage": 2.92,
-       "id": 30,
-        "images": ["https://i.dummyjson.com/data/products/30/1.jpg",
-         "https://i.dummyjson.com/data/products/30/2.jpg",
-          "https://i.dummyjson.com/data/products/30/3.jpg",
-           "https://i.dummyjson.com/data/products/30/thumbnail.jpg"],
-           "price": 30,
-            "rating": 4.92,
-             "stock": 54, 
-             "thumbnail": "https://i.dummyjson.com/data/products/30/thumbnail.jpg",
-              "title": "Key Holder"}  
-     */
+const ItemCard = ({ item,onPressCart,naviagtion,favou }) => {
+    
     return (
         <Pressable 
         onPress={()=>naviagtion.navigate("Product",{id:item?.id})}
         style={styles?.card}>
+
+
+          <MakeFav
+          item={item}
+          favou={favou}
+          style={{position:'absolute',left:widthPercentageToDP(3),top:heightPercentageToDP(1),zIndex:10,backgroundColor:Colors?.LightGrey,padding:widthPercentageToDP(1),borderRadius:999}}
+          iconStyle={{height:20, width:20}}
+          />
+
             <View style={styles.img_holder}>
               { item?.images?.length
               ?

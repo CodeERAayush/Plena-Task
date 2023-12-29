@@ -12,12 +12,12 @@ export const productSlice = createSlice({
     state?.products.push(...action?.payload)
     },
     append_product: (state,action) => {
-    state?.products?.shift(action?.payload)
+    state?.products?.unshift(action?.payload)
     },
   },
 })
 
 // Action creators are generated for each case reducer function
-export const { add_product, append_product} = productSlice.actions
+export const { add_product, append_product,} = productSlice.actions
 
 export default productSlice.reducer

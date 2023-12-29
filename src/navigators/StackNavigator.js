@@ -5,6 +5,7 @@ import { createStackNavigator } from '@react-navigation/stack';
 import HomeScreen from '../screens/HomeScreen';
 import ProductDetailScreen from '../screens/ProductDetailScreen';
 import CartScreen from '../screens/CartScreen';
+import BottomTabNavigator from './BottomNavigator';
 const StackNavigator = () => {
 
     const Stack = createStackNavigator()
@@ -20,7 +21,8 @@ const StackNavigator = () => {
     <Stack.Navigator screenOptions={{
         headerShown: false
     }}>
-        {_addScreen("Home",HomeScreen)}
+        {_addScreen("BottomTab",BottomTabNavigator)}
+        {/* {_addScreen("Home",HomeScreen)} */}
         {_addScreen("Product",ProductDetailScreen)}
         {_addScreen("Cart",CartScreen)}
         </Stack.Navigator>
